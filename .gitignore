@@ -1,0 +1,15 @@
+build/
+!**/src/main/**
+!**/src/test/**
+
+### Intellij Idea
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Gradle
+.gradle
+
+### Logs
+*.log
