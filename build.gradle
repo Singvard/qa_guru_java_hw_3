@@ -14,8 +14,10 @@ repositories {
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:7.12.3",
-            "org.junit.jupiter:junit-jupiter-api:6.0.1"
+            "com.codeborne:selenide:7.13.0",
+            "org.junit.jupiter:junit-jupiter:6.0.1",
+            "org.slf4j:slf4j-api:2.0.17",
+            "ch.qos.logback:logback-classic:1.5.22"
     )
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
