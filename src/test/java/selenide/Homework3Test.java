@@ -36,7 +36,7 @@ class Homework3Test {
         $("#userEmail").setValue("test@test.test");
 
         // Выбрать радиокнопку пола
-        $(byText("Male")).click();
+        $("#gender-radio-1").parent().click();
 
         // Заполнить поле мобильного телефона
         $("#userNumber").setValue("9876543210");
