@@ -2,8 +2,6 @@ package selenide;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -68,11 +66,11 @@ class Homework3Test {
                 .click();
 
         // Проставить чекбоксы хобби
-        $(byText("Sports")).click();
-        $(byText("Music")).click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
 
         // Загрузить аватар пользователя
-        $("#uploadPicture").uploadFile(new File("src/test/resources/avatar.png"));
+        $("#uploadPicture").uploadFromClasspath("avatar.png");
 
         // Заполнить поле адреса (многострочное)
         $("#currentAddress").setValue(MULTILINE_ADDRESS);
