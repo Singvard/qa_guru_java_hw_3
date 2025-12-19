@@ -25,6 +25,8 @@ class Homework3Test {
         //ARRANGE
         // Страница тестируемой формы
         open("https://demoqa.com/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         // Заполнить поле имени
         $("#firstName").setValue("Имя");
@@ -83,6 +85,7 @@ class Homework3Test {
         $(byText("Jaiselmer")).click();
 
         //ACT
+        //Кликнуть кнопку отправки формы
         $("#submit").click();
 
         // ASSERT
