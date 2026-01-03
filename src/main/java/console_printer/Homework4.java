@@ -21,6 +21,14 @@ public class Homework4 {
     private static final String BIGGER_OR_EQUALS_TEMPLATE = "%d ≥ %f = %s";
     private static final String LESS_TEMPLATE = "%d < %d = %s";
     private static final String LESS_OR_EQUALS_TEMPLATE = "%d ≤ %f = %s";
+    private static final String MAX_INT_TEMPLATE = "Максимальное значение типа int = %d";
+    private static final String MAX_LONG_TEMPLATE = "Максимальное значение типа long = %d";
+    private static final String MAX_FLOAT_TEMPLATE = "Максимальное значение типа float = %f";
+    private static final String MAX_DOUBLE_TEMPLATE = "Максимальное значение типа double = %f";
+    private static final String MIN_INT_TEMPLATE = "Минимальное значение типа int = %d";
+    private static final String MIN_LONG_TEMPLATE = "Минимальное значение типа long = %d";
+    private static final String MIN_FLOAT_TEMPLATE = "Минимальное значение типа float = %f";
+    private static final String MIN_DOUBLE_TEMPLATE = "Минимальное значение типа double = %f";
     private static final String MULTIPLICATION_WITH_OVERFLOW_TEMPLATE = "%d × %f = %s";
     private static final String DIVISION_WITH_OVERFLOW_TEMPLATE = "%f ÷ %f = %s";
     private static final String IS_INFINITE_TEMPLATE = "Является ли неопределённостью (бесконечностью): %s";
@@ -36,10 +44,11 @@ public class Homework4 {
     }
 
     /**
-     * 1. Применение нескольких арифметических операций ( + , -, × , ÷) над двумя примитивами типа int
+     * 1. Применение нескольких арифметических операций (+, -, ×, ÷) над двумя примитивами типа int
      */
     private static void printFirstTask() {
         print(FIRST_TASK_MESSAGE);
+
         int firstNumber = faker.number().numberBetween(1, 10);
         int secondNumber = faker.number().numberBetween(10, 20);
         var intSum = firstNumber + secondNumber;
@@ -61,6 +70,7 @@ public class Homework4 {
      */
     private static void printSecondTask() {
         print(SECOND_TASK_MESSAGE);
+
         int firstNumber = faker.number().numberBetween(1, 10);
         double secondNumber = 0.1;
         var result = firstNumber * (secondNumber + secondNumber) / secondNumber;
@@ -69,10 +79,11 @@ public class Homework4 {
     }
 
     /**
-     * 3. Применение нескольких логических операций ( < , >, >=, <= )
+     * 3. Применение нескольких логических операций (<, >, >=, <=)
      */
     private static void printThirdTask() {
         print(THIRD_TASK_MESSAGE);
+
         int firstNumber = faker.number().numberBetween(1, 10);
         int secondNumber = firstNumber - 1;
         double thirdNumber = firstNumber + 0.0;
@@ -90,30 +101,52 @@ public class Homework4 {
         print(message);
     }
 
-
+    /**
+     * 4. Получение максимальных и минимальных числовых значений
+     */
     private static void printFourthTask() {
         print(FOURTH_TASK_MESSAGE);
+
         int maxInt = Integer.MAX_VALUE;
-        print("Максимальное значение типа int = %d".formatted(maxInt));
+        message = MAX_INT_TEMPLATE.formatted(maxInt);
+        print(message);
+
         int minInt = Integer.MIN_VALUE;
-        print("Минимальное значение типа int = %d".formatted(minInt));
+        message = MIN_INT_TEMPLATE.formatted(minInt);
+        print(message);
+
         long maxLong = Long.MAX_VALUE;
-        print("Максимальное значение типа long = %d".formatted(maxLong));
+        message = MAX_LONG_TEMPLATE.formatted(maxLong);
+        print(message);
+
         long minLong = Long.MIN_VALUE;
-        print("Минимальное значение типа long = %d".formatted(minLong));
+        message = MIN_LONG_TEMPLATE.formatted(minLong);
+        print(message);
+
         float maxFloat = Float.MAX_VALUE;
-        print("Максимальное значение типа float = %f".formatted(maxFloat));
+        message = MAX_FLOAT_TEMPLATE.formatted(maxFloat);
+        print(message);
+
         float minFloat = Float.MIN_VALUE;
-        print("Минимальное значение типа float = %f".formatted(minFloat));
+        message = MIN_FLOAT_TEMPLATE.formatted(minFloat);
+        print(message);
+
         double maxDouble = Double.MAX_VALUE;
-        print("Максимальное значение типа double = %f".formatted(maxDouble));
+        message = MAX_DOUBLE_TEMPLATE.formatted(maxDouble);
+        print(message);
+
         double minDouble = Double.MIN_VALUE;
-        print("Минимальное значение типа double = %f".formatted(minDouble));
+        message = MIN_DOUBLE_TEMPLATE.formatted(minDouble);
+        print(message);
     }
 
+    /**
+     * 5. Получение переполнения при арифметической операции
+     */
     private static void printFifthTask() {
         print(FIFTH_TASK_MESSAGE);
         var maxDouble = Double.MAX_VALUE;
+
         int intNumber = faker.number().numberBetween(2, 10);
         var overflow = intNumber * maxDouble;
         message = MULTIPLICATION_WITH_OVERFLOW_TEMPLATE.formatted(intNumber, maxDouble, overflow);
