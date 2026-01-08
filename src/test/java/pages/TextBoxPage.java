@@ -23,6 +23,10 @@ public class TextBoxPage {
 
     public TextBoxPage openPage() {
         open(PAGE_ADDRESS);
+        return this;
+    }
+
+    public TextBoxPage removeAds() {
         PageUtils.muteAds();
         return this;
     }

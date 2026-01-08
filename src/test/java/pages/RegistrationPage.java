@@ -55,6 +55,15 @@ public class RegistrationPage {
      */
     public RegistrationPage openPage() {
         open(PAGE_ADDRESS);
+        return this;
+    }
+
+    /**
+     * Удалить рекламу на странице.
+     *
+     * @return Текущий объект RegistrationPage для цепочки вызовов
+     */
+    public RegistrationPage removeAds() {
         PageUtils.muteAds();
         return this;
     }

@@ -34,6 +34,7 @@ class Homework5Test extends BaseTest {
     @Test
     void testFormWithAllFields() {
         page.openPage()
+                .removeAds()
                 .setFirstName(student.firstName())
                 .setLastName(student.lastName())
                 .setEmail(student.email())
@@ -68,6 +69,7 @@ class Homework5Test extends BaseTest {
     @Test
     void testFormWithMandatoryFields() {
         page.openPage()
+                .removeAds()
                 .setFirstName(student.firstName())
                 .setLastName(student.lastName())
                 .setPhoneNumber(student.phoneNumber())
@@ -93,6 +95,7 @@ class Homework5Test extends BaseTest {
     @Test
     void testEmptyFormSending() {
         page.openPage()
+                .removeAds()
                 .submit();
 
         page.modal()

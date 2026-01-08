@@ -23,6 +23,7 @@ class TextBoxTest extends BaseTest {
     @Test
     void testFormWithAllFields() {
         page.openPage()
+                .removeAds()
                 .setFullName(student.studentFullName())
                 .setEmail(student.email())
                 .setCurrentAddress(student.address())
