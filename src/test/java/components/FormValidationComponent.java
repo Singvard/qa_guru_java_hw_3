@@ -5,6 +5,9 @@ import utils.PageUtils;
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Класс представляющий псевдокомпонент валидации формы.
+ */
 public class FormValidationComponent {
     private static final String ID_FIRST_NAME = "#firstName";
     private static final String ID_LAST_NAME = "#lastName";

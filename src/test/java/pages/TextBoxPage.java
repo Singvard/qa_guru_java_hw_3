@@ -3,7 +3,6 @@ package pages;
 import models.Student;
 import utils.PageUtils;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -63,14 +62,14 @@ public class TextBoxPage {
     }
 
     public TextBoxPage verifyCurrentAddress(Student student) {
-        $(ID_OUTPUT).$(ID_CURRENT_ADDRESS)
-                .shouldHave(text(CURRENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress())));
+        PageUtils.checkTextValue(ID_OUTPUT, ID_CURRENT_ADDRESS,
+                CURRENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress()));
         return this;
     }
 
     public TextBoxPage verifyPermanentAddress(Student student) {
-        $(ID_OUTPUT).$(ID_PERMANENT_ADDRESS)
-                .shouldHave(text(PERMANENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress())));
+        PageUtils.checkTextValue(ID_OUTPUT, ID_PERMANENT_ADDRESS,
+                PERMANENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress()));
         return this;
     }
 }

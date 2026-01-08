@@ -16,6 +16,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ * Класс, моделирующий страницу регистрации нового студента
+ */
 public class RegistrationPage {
     private static final String PAGE_ADDRESS = "/automation-practice-form";
     private static final String ID_FIRST_NAME = "#firstName";

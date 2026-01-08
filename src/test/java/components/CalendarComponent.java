@@ -8,6 +8,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+/**
+ * Класс, моделирующий компонент типа календарь для выбора даты рождения студента.
+ */
 public class CalendarComponent {
     private static final String ID_DATE_OF_BIRTH_INPUT = "#dateOfBirthInput";
     private static final String CSS_DATEPICKER_YEAR = ".react-datepicker__year-select";

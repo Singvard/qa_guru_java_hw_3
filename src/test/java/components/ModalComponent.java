@@ -4,6 +4,9 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ * Класс, моделирующий модальное окно с таблицей итогов регистрации студента.
+ */
 public class ModalComponent {
     private static final String CSS_MODAL_SHOW = ".modal.show";
     private static final String CSS_MODAL_TITLE = ".modal-title";
