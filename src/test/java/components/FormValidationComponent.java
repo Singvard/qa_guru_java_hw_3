@@ -5,9 +5,6 @@ import utils.PageUtils;
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Selenide.$;
 
-/**
- * Класс представляющий псевдокомпонент валидации формы.
- */
 public class FormValidationComponent {
     private static final String ID_FIRST_NAME = "#firstName";
     private static final String ID_LAST_NAME = "#lastName";
@@ -34,151 +31,76 @@ public class FormValidationComponent {
     private static final String HOBBY_LABELS_SELECTOR = "#hobbiesWrapper label.custom-control-label";
     private static final String ID_CURRENT_ADDRESS = "#currentAddress";
 
-    /**
-     * Проверить, что форма была валидирована.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyFormWasValidated() {
         $(ID_USER_FORM).shouldHave(cssClass(WAS_VALIDATED));
         return this;
     }
 
-    /**
-     * Проверить, что поле имени имеет красную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyFirstNameHasRedBorder() {
         PageUtils.checkCssValue(ID_FIRST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле имени имеет предупреждающий значок
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyFirstNameHasWarning() {
         PageUtils.checkCssValue(ID_FIRST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
-    /**
-     * Проверить, что поле фамилии имеет красную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyLastNameHasRedBorder() {
         PageUtils.checkCssValue(ID_LAST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле фамилии имеет предупреждающий значок.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyLastNameHasWarning() {
         PageUtils.checkCssValue(ID_LAST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
-    /**
-     * Проверить, что поле электронной почты имеет зелёную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyEmailHasGreenBorder() {
         PageUtils.checkCssValue(ID_USER_EMAIL, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле электронной почты имеет одобрительный значок.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyEmailHasApproval() {
         PageUtils.checkCssValue(ID_USER_EMAIL, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;
     }
 
-    /**
-     * Проверить, что все радиокнопки пола красного цвета.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyAllGenderOptionsAreRed() {
         PageUtils.checkAllElementsCssValue(GENDER_LABELS_SELECTOR, CSS_COLOR, RGBA_220_53_69_1);
         return this;
     }
 
-    /**
-     * Проверить, что поле мобильного номера имеет красную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyMobileNumberHasRedBorder() {
         PageUtils.checkCssValue(ID_USER_NUMBER, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле мобильного номера имеет предупреждающий значок.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyMobileNumberHasWarning() {
         PageUtils.checkCssValue(ID_USER_NUMBER, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
-    /**
-     * Проверить, что поле даты рождения имеет зелёную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyDateOfBirthHasGreenBorder() {
         PageUtils.checkCssValue(ID_DATE_OF_BIRTH_INPUT, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле даты рождения имеет одобрительный значок.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyDateOfBirthHasApproval() {
         PageUtils.checkCssValue(ID_DATE_OF_BIRTH_INPUT, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;
     }
 
-    /**
-     * Проверить, что все чекбоксы хобби зелёного цвета.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyAllHobbiesOptionsAreGreen() {
         PageUtils.checkAllElementsCssValue(HOBBY_LABELS_SELECTOR, CSS_COLOR, RGBA_40_167_69_1);
         return this;
     }
 
-    /**
-     * Проверить, что поле адреса имеет зелёную границу.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyAddressHasGreenBorder() {
         PageUtils.checkCssValue(ID_CURRENT_ADDRESS, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
-    /**
-     * Проверить, что поле адреса имеет одобрительный значок.
-     *
-     * @return Текущий объект FormValidationComponent для цепочки вызовов
-     */
     public FormValidationComponent verifyAddressHasApproval() {
         PageUtils.checkCssValue(ID_CURRENT_ADDRESS, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;

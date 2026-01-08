@@ -5,21 +5,6 @@ import models.*;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Класс для создания объектов класса {@link Student} с гибкой конфигурацией параметров.
- * Позволяет создавать студентов с настраиваемыми атрибутами, используя паттерн Builder.
- * По умолчанию инициализирует все поля предопределёнными значениями.
- *
- * <p>Пример использования:
- * <pre>
- * Student student = StudentBuilder.defaultStudent()
- *     .withFirstName("Иван")
- *     .withLastName("Иванов")
- *     .build();
- * </pre>
- *
- * @see Student
- */
 public class StudentBuilder {
     private String firstName = "Имя";
     private String lastName = "Фамилия";
