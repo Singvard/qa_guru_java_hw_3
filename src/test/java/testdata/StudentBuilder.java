@@ -12,8 +12,8 @@ public class StudentBuilder {
     private Gender gender = Gender.MALE;
     private String phoneNumber = "9876543210";
     private LocalDate birthdate = LocalDate.of(1990, 8, 12);
-    private List<String> addedSubjects = List.of("Maths", "English", "Computer Science", "Arts");
-    private List<String> deletedSubjects = List.of("Arts");
+    private List<Subject> addedSubjects = List.of(Subject.MATHS, Subject.ENGLISH, Subject.COMPUTER_SCIENCE, Subject.ARTS);
+    private List<Subject> deletedSubjects = List.of(Subject.ARTS);
     private List<Hobby> hobbies = List.of(Hobby.SPORTS, Hobby.MUSIC);
     private String picturePath = "avatar.png";
     private String address =
@@ -57,12 +57,12 @@ public class StudentBuilder {
         return this;
     }
 
-    public StudentBuilder withAddedSubjects(List<String> addedSubjects) {
+    public StudentBuilder withAddedSubjects(List<Subject> addedSubjects) {
         this.addedSubjects = addedSubjects;
         return this;
     }
 
-    public StudentBuilder withDeletedSubjects(List<String> deletedSubjects) {
+    public StudentBuilder withDeletedSubjects(List<Subject> deletedSubjects) {
         this.deletedSubjects = deletedSubjects;
         return this;
     }

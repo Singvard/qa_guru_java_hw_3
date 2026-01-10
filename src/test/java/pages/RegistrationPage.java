@@ -3,10 +3,7 @@ package pages;
 import components.CalendarComponent;
 import components.FormValidationComponent;
 import components.ModalComponent;
-import models.City;
-import models.Gender;
-import models.Hobby;
-import models.State;
+import models.*;
 import utils.PageUtils;
 
 import java.time.LocalDate;
@@ -85,19 +82,19 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjects(List<String> subjects) {
+    public RegistrationPage setSubjects(List<Subject> subjects) {
         $(ID_SUBJECTS_INPUT).click();
         subjects.forEach(subject -> {
-            $(ID_SUBJECTS_INPUT).setValue(subject.toLowerCase().substring(0, 1));
-            $(byText(subject)).scrollTo().click();
+            $(ID_SUBJECTS_INPUT).setValue(subject.toString().toLowerCase().substring(0, 1));
+            $(byText(subject.toString())).scrollTo().click();
         });
         return this;
     }
 
-    public RegistrationPage deleteSubjects(List<String> subjects) {
+    public RegistrationPage deleteSubjects(List<Subject> subjects) {
         subjects.forEach(subject ->
                 $$(CSS_ADDED_SUBJECTS)
-                        .findBy(text(subject))
+                        .findBy(text(subject.toString()))
                         .$(CSS_SUBJECT_REMOVER)
                         .click()
         );
