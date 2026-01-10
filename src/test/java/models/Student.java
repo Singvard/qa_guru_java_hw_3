@@ -13,8 +13,8 @@ public record Student(
         Gender gender,
         String phoneNumber,
         LocalDate birthdate,
-        List<String> addedSubjects,
-        List<String> deletedSubjects,
+        List<Subject> addedSubjects,
+        List<Subject> deletedSubjects,
         List<Hobby> hobbies,
         String picturePath,
         String address,
@@ -33,6 +33,7 @@ public record Student(
     public String studentSubjects() {
         return addedSubjects.stream()
                 .filter(subject -> !deletedSubjects.contains(subject))
+                .map(Subject::toString)
                 .collect(Collectors.joining(", "));
     }
 
