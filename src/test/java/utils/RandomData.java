@@ -56,7 +56,7 @@ public class RandomData {
         var allSubjects = new ArrayList<>(Arrays.asList(Subject.values()));
         Collections.shuffle(allSubjects);
         var toIndex = faker.number().numberBetween(MIN_ADDED_SUBJECTS, MAX_ADDED_SUBJECTS);
-        return allSubjects.subList(0, toIndex);
+        return Collections.unmodifiableList(allSubjects.subList(0, toIndex));
     }
 
     public List<Subject> randomDeletedSubjects(List<Subject> addedSubjects) {
