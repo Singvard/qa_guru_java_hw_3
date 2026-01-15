@@ -14,13 +14,29 @@ public record Student(
         String phoneNumber,
         LocalDate birthdate,
         List<Subject> addedSubjects,
-        List<Subject> deletedSubjects,
         List<Hobby> hobbies,
         String picturePath,
         String address,
         State state,
         City city
 ) {
+
+    public Student(String firstName, String lastName, String email, String address) {
+        this(
+                firstName,
+                lastName,
+                email,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                address,
+                null,
+                null
+        );
+    }
 
     public String studentFullName() {
         return firstName + " " + lastName;
@@ -32,7 +48,6 @@ public record Student(
 
     public String studentSubjects() {
         return addedSubjects.stream()
-                .filter(subject -> !deletedSubjects.contains(subject))
                 .map(Subject::toString)
                 .collect(Collectors.joining(", "));
     }

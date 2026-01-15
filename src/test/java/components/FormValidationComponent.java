@@ -1,9 +1,12 @@
 package components;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import utils.PageUtils;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class FormValidationComponent {
     private static final String ID_FIRST_NAME = "#firstName";
@@ -31,78 +34,88 @@ public class FormValidationComponent {
     private static final String HOBBY_LABELS_SELECTOR = "#hobbiesWrapper label.custom-control-label";
     private static final String ID_CURRENT_ADDRESS = "#currentAddress";
 
+    private static final SelenideElement FORM = $(ID_USER_FORM);
+    private static final SelenideElement FIRST_NAME = $(ID_FIRST_NAME);
+    private static final SelenideElement LAST_NAME = $(ID_LAST_NAME);
+    private static final SelenideElement USER_EMAIL = $(ID_USER_EMAIL);
+    private static final ElementsCollection GENDER_LABELS = $$(GENDER_LABELS_SELECTOR);
+    private static final SelenideElement USER_NUMBER = $(ID_USER_NUMBER);
+    private static final SelenideElement DATE_OF_BIRTH = $(ID_DATE_OF_BIRTH_INPUT);
+    private static final ElementsCollection HOBBY_LABELS = $$(HOBBY_LABELS_SELECTOR);
+    private static final SelenideElement CURRENT_ADDRESS = $(ID_CURRENT_ADDRESS);
+
     public FormValidationComponent verifyFormWasValidated() {
-        $(ID_USER_FORM).shouldHave(cssClass(WAS_VALIDATED));
+        FORM.shouldHave(cssClass(WAS_VALIDATED));
         return this;
     }
 
     public FormValidationComponent verifyFirstNameHasRedBorder() {
-        PageUtils.checkCssValue(ID_FIRST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
+        PageUtils.checkCssValue(FIRST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
     public FormValidationComponent verifyFirstNameHasWarning() {
-        PageUtils.checkCssValue(ID_FIRST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
+        PageUtils.checkCssValue(FIRST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
     public FormValidationComponent verifyLastNameHasRedBorder() {
-        PageUtils.checkCssValue(ID_LAST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
+        PageUtils.checkCssValue(LAST_NAME, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
     public FormValidationComponent verifyLastNameHasWarning() {
-        PageUtils.checkCssValue(ID_LAST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
+        PageUtils.checkCssValue(LAST_NAME, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
     public FormValidationComponent verifyEmailHasGreenBorder() {
-        PageUtils.checkCssValue(ID_USER_EMAIL, CSS_BORDER_COLOR, RGB_40_167_69);
+        PageUtils.checkCssValue(USER_EMAIL, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
     public FormValidationComponent verifyEmailHasApproval() {
-        PageUtils.checkCssValue(ID_USER_EMAIL, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
+        PageUtils.checkCssValue(USER_EMAIL, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;
     }
 
     public FormValidationComponent verifyAllGenderOptionsAreRed() {
-        PageUtils.checkAllElementsCssValue(GENDER_LABELS_SELECTOR, CSS_COLOR, RGBA_220_53_69_1);
+        PageUtils.checkAllElementsCssValue(GENDER_LABELS, CSS_COLOR, RGBA_220_53_69_1);
         return this;
     }
 
     public FormValidationComponent verifyMobileNumberHasRedBorder() {
-        PageUtils.checkCssValue(ID_USER_NUMBER, CSS_BORDER_COLOR, RGB_220_53_69);
+        PageUtils.checkCssValue(USER_NUMBER, CSS_BORDER_COLOR, RGB_220_53_69);
         return this;
     }
 
     public FormValidationComponent verifyMobileNumberHasWarning() {
-        PageUtils.checkCssValue(ID_USER_NUMBER, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
+        PageUtils.checkCssValue(USER_NUMBER, CSS_BACKGROUND_IMAGE, WARNING_IMAGE_URL);
         return this;
     }
 
     public FormValidationComponent verifyDateOfBirthHasGreenBorder() {
-        PageUtils.checkCssValue(ID_DATE_OF_BIRTH_INPUT, CSS_BORDER_COLOR, RGB_40_167_69);
+        PageUtils.checkCssValue(DATE_OF_BIRTH, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
     public FormValidationComponent verifyDateOfBirthHasApproval() {
-        PageUtils.checkCssValue(ID_DATE_OF_BIRTH_INPUT, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
+        PageUtils.checkCssValue(DATE_OF_BIRTH, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;
     }
 
     public FormValidationComponent verifyAllHobbiesOptionsAreGreen() {
-        PageUtils.checkAllElementsCssValue(HOBBY_LABELS_SELECTOR, CSS_COLOR, RGBA_40_167_69_1);
+        PageUtils.checkAllElementsCssValue(HOBBY_LABELS, CSS_COLOR, RGBA_40_167_69_1);
         return this;
     }
 
     public FormValidationComponent verifyAddressHasGreenBorder() {
-        PageUtils.checkCssValue(ID_CURRENT_ADDRESS, CSS_BORDER_COLOR, RGB_40_167_69);
+        PageUtils.checkCssValue(CURRENT_ADDRESS, CSS_BORDER_COLOR, RGB_40_167_69);
         return this;
     }
 
     public FormValidationComponent verifyAddressHasApproval() {
-        PageUtils.checkCssValue(ID_CURRENT_ADDRESS, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
+        PageUtils.checkCssValue(CURRENT_ADDRESS, CSS_BACKGROUND_IMAGE, APPROVAL_IMAGE_URL);
         return this;
     }
 }

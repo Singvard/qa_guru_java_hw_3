@@ -4,7 +4,6 @@ import models.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import testdata.StudentBuilder;
 import utils.DateFormatter;
 import utils.RandomData;
 import utils.StateCityMapper;
@@ -24,6 +23,8 @@ class Homework5Test extends BaseTest {
     private static final String ADDRESS_LABEL = "Address";
     private static final String STATE_AND_CITY_LABEL = "State and City";
 
+    private static final String PICTURE_PATH = "avatar.png";
+
     private RegistrationPage page;
     private Student student;
 
@@ -38,26 +39,25 @@ class Homework5Test extends BaseTest {
         var phoneNumber = randomizer.random10DigitsPhoneNumber();
         var birthdate = randomizer.randomBirthdate();
         var addedSubjects = randomizer.randomAddedSubjects();
-        var deletedSubjects = randomizer.randomDeletedSubjects(addedSubjects);
         var hobbies = randomizer.randomHobbies();
         var address = randomizer.randomAddress();
         var city = randomizer.randomCity();
         var state = StateCityMapper.getStateForCity(city);
 
-        student = StudentBuilder.defaultStudent()
-                .withFirstName(firstName)
-                .withLastName(lastName)
-                .withEmail(email)
-                .withGender(gender)
-                .withPhoneNumber(phoneNumber)
-                .withBirthdate(birthdate)
-                .withAddedSubjects(addedSubjects)
-                .withDeletedSubjects(deletedSubjects)
-                .withHobbies(hobbies)
-                .withAddress(address)
-                .withState(state)
-                .withCity(city)
-                .build();
+        student = new Student(
+                firstName,
+                lastName,
+                email,
+                gender,
+                phoneNumber,
+                birthdate,
+                addedSubjects,
+                hobbies,
+                PICTURE_PATH,
+                address,
+                state,
+                city
+        );
     }
 
     @Test
@@ -71,7 +71,6 @@ class Homework5Test extends BaseTest {
                 .setPhoneNumber(student.phoneNumber())
                 .setBirthday(student.birthdate())
                 .setSubjects(student.addedSubjects())
-                .deleteSubjects(student.deletedSubjects())
                 .setHobbies(student.hobbies())
                 .uploadPicture(student.picturePath())
                 .setAddress(student.address())

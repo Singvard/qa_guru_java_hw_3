@@ -4,7 +4,6 @@ import models.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
-import testdata.StudentBuilder;
 import utils.RandomData;
 
 class TextBoxTest extends BaseTest {
@@ -20,12 +19,7 @@ class TextBoxTest extends BaseTest {
         var email = randomizer.randomEmail();
         var address = randomizer.randomAddress();
 
-        student = StudentBuilder.defaultStudent()
-                .withFirstName(firstName)
-                .withLastName(lastName)
-                .withEmail(email)
-                .withAddress(address)
-                .build();
+        student = new Student(firstName, lastName, email, address);
     }
 
     @Test

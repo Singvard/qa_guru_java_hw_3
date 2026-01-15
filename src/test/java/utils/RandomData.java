@@ -15,7 +15,7 @@ import java.util.List;
 public class RandomData {
     private static final Faker faker = new Faker();
     private static final int LENGTH_OF_10_DIGITS = 10;
-    private static final int MIN_ADDED_SUBJECTS = 2;
+    private static final int MIN_ADDED_SUBJECTS = 1;
     private static final int MAX_ADDED_SUBJECTS = Subject.values().length + 1;
     private static final int MIN_ADDED_HOBBIES = 1;
     private static final int MAX_ADDED_HOBBIES = Hobby.values().length + 1;
@@ -57,13 +57,6 @@ public class RandomData {
         Collections.shuffle(allSubjects);
         var toIndex = faker.number().numberBetween(MIN_ADDED_SUBJECTS, MAX_ADDED_SUBJECTS);
         return Collections.unmodifiableList(allSubjects.subList(0, toIndex));
-    }
-
-    public List<Subject> randomDeletedSubjects(List<Subject> addedSubjects) {
-        var addedSubjectsCopy = new ArrayList<>(addedSubjects);
-        Collections.shuffle(addedSubjectsCopy);
-        var toIndex = faker.number().numberBetween(1, addedSubjectsCopy.size());
-        return Collections.unmodifiableList(addedSubjectsCopy.subList(0, toIndex));
     }
 
     public List<Hobby> randomHobbies() {

@@ -1,11 +1,11 @@
 package utils;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class PageUtils {
     private PageUtils() {
@@ -16,20 +16,19 @@ public class PageUtils {
         Selenide.executeJavaScript("$('footer').remove()");
     }
 
-    public static void checkCssValue(String selector, String css, String value) {
-        $(selector).shouldHave(cssValue(css, value));
+    public static void checkCssValue(SelenideElement element, String css, String value) {
+        element.shouldHave(cssValue(css, value));
     }
 
-    public static void checkTextValue(String selector, String value) {
-        $(selector).shouldHave(text(value));
+    public static void checkTextValue(SelenideElement element, String value) {
+        element.shouldHave(text(value));
     }
 
-    public static void checkTextValue(String outerSelector, String innerSelector, String value) {
-        $(outerSelector).$(innerSelector).shouldHave(text(value));
+    public static void checkTextValue(SelenideElement outerElement, String innerSelector, String value) {
+        outerElement.$(innerSelector).shouldHave(text(value));
     }
 
-    public static void checkAllElementsCssValue(String selector, String css, String value) {
-        $$(selector)
-                .forEach(element -> element.shouldHave(cssValue(css, value)));
+    public static void checkAllElementsCssValue(ElementsCollection elements, String css, String value) {
+        elements.forEach(element -> element.shouldHave(cssValue(css, value)));
     }
 }
