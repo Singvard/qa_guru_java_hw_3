@@ -4,8 +4,9 @@ import models.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import testdata.StudentBuilder;
 import utils.DateFormatter;
+import utils.RandomData;
+import utils.StateCityMapper;
 
 import java.time.LocalDate;
 
@@ -22,13 +23,41 @@ class Homework5Test extends BaseTest {
     private static final String ADDRESS_LABEL = "Address";
     private static final String STATE_AND_CITY_LABEL = "State and City";
 
+    private static final String PICTURE_PATH = "avatar.png";
+
     private RegistrationPage page;
     private Student student;
 
     @BeforeEach
     void setUp() {
         page = new RegistrationPage();
-        student = StudentBuilder.defaultStudent().build();
+        var randomizer = new RandomData();
+        var firstName = randomizer.randomFirstName();
+        var lastName = randomizer.randomLastName();
+        var email = randomizer.randomEmail();
+        var gender = randomizer.randomGender();
+        var phoneNumber = randomizer.random10DigitsPhoneNumber();
+        var birthdate = randomizer.randomBirthdate();
+        var addedSubjects = randomizer.randomAddedSubjects();
+        var hobbies = randomizer.randomHobbies();
+        var address = randomizer.randomAddress();
+        var city = randomizer.randomCity();
+        var state = StateCityMapper.getStateForCity(city);
+
+        student = new Student(
+                firstName,
+                lastName,
+                email,
+                gender,
+                phoneNumber,
+                birthdate,
+                addedSubjects,
+                hobbies,
+                PICTURE_PATH,
+                address,
+                state,
+                city
+        );
     }
 
     @Test
@@ -42,7 +71,6 @@ class Homework5Test extends BaseTest {
                 .setPhoneNumber(student.phoneNumber())
                 .setBirthday(student.birthdate())
                 .setSubjects(student.addedSubjects())
-                .deleteSubjects(student.deletedSubjects())
                 .setHobbies(student.hobbies())
                 .uploadPicture(student.picturePath())
                 .setAddress(student.address())
@@ -50,20 +78,31 @@ class Homework5Test extends BaseTest {
                 .setCity(student.city())
                 .submit();
 
+        var expectedFullName = student.studentFullName();
+        var expectedEmail = student.email();
+        var expectedGender = student.gender().toString();
+        var expectedPhoneNumber = student.phoneNumber();
+        var expectedBirthdate = student.studentDateOfBirth();
+        var expectedSubjects = student.studentSubjects();
+        var expectedHobbies = student.studentHobbies();
+        var expectedPicture = student.picturePath();
+        var expectedAddress = student.studentFlatAddress();
+        var expectedStateAndCity = student.studentFullLocation();
+
         page.modal()
                 .checkVisibility()
                 .checkTitle()
                 .checkColumnTitles()
-                .checkCellValue(STUDENT_NAME_LABEL, student.studentFullName())
-                .checkCellValue(STUDENT_EMAIL_LABEL, student.email())
-                .checkCellValue(GENDER_LABEL, student.gender().toString())
-                .checkCellValue(MOBILE_LABEL, student.phoneNumber())
-                .checkCellValue(DATE_OF_BIRTH_LABEL, student.studentDateOfBirth())
-                .checkCellValue(SUBJECTS_LABEL, student.studentSubjects())
-                .checkCellValue(HOBBIES_LABEL, student.studentHobbies())
-                .checkCellValue(PICTURE_LABEL, student.picturePath())
-                .checkCellValue(ADDRESS_LABEL, student.studentFlatAddress())
-                .checkCellValue(STATE_AND_CITY_LABEL, student.studentFullLocation());
+                .checkCellValue(STUDENT_NAME_LABEL, expectedFullName)
+                .checkCellValue(STUDENT_EMAIL_LABEL, expectedEmail)
+                .checkCellValue(GENDER_LABEL, expectedGender)
+                .checkCellValue(MOBILE_LABEL, expectedPhoneNumber)
+                .checkCellValue(DATE_OF_BIRTH_LABEL, expectedBirthdate)
+                .checkCellValue(SUBJECTS_LABEL, expectedSubjects)
+                .checkCellValue(HOBBIES_LABEL, expectedHobbies)
+                .checkCellValue(PICTURE_LABEL, expectedPicture)
+                .checkCellValue(ADDRESS_LABEL, expectedAddress)
+                .checkCellValue(STATE_AND_CITY_LABEL, expectedStateAndCity);
     }
 
     @Test
@@ -76,15 +115,20 @@ class Homework5Test extends BaseTest {
                 .setGender(student.gender())
                 .submit();
 
+        var expectedFullName = student.studentFullName();
+        var expectedGender = student.gender().toString();
+        var expectedPhoneNumber = student.phoneNumber();
+        var expectedBirthdate = DateFormatter.formateDateToString(LocalDate.now());
+
         page.modal()
                 .checkVisibility()
                 .checkTitle()
                 .checkColumnTitles()
-                .checkCellValue(STUDENT_NAME_LABEL, student.studentFullName())
+                .checkCellValue(STUDENT_NAME_LABEL, expectedFullName)
                 .checkEmptyCell(STUDENT_EMAIL_LABEL)
-                .checkCellValue(GENDER_LABEL, student.gender().toString())
-                .checkCellValue(MOBILE_LABEL, student.phoneNumber())
-                .checkCellValue(DATE_OF_BIRTH_LABEL, DateFormatter.formateDateToString(LocalDate.now()))
+                .checkCellValue(GENDER_LABEL, expectedGender)
+                .checkCellValue(MOBILE_LABEL, expectedPhoneNumber)
+                .checkCellValue(DATE_OF_BIRTH_LABEL, expectedBirthdate)
                 .checkEmptyCell(SUBJECTS_LABEL)
                 .checkEmptyCell(HOBBIES_LABEL)
                 .checkEmptyCell(PICTURE_LABEL)
