@@ -1,5 +1,8 @@
 package components;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -13,22 +16,26 @@ public class ModalComponent {
     private static final String VALUES = "Values";
     private static final String XPATH_ROW_VALUES_TEMPLATE = "//td[text()='%s']/following-sibling::td";
 
+    private static final SelenideElement MODAL_SHOW = $(CSS_MODAL_SHOW);
+    private static final SelenideElement MODAL_TITLE = $(CSS_MODAL_TITLE);
+    private static final ElementsCollection COLUMN_TITLE = $$(CSS_COLUMN_TITLE);
+
     public ModalComponent checkVisibility() {
-        $(CSS_MODAL_SHOW).shouldBe(visible);
+        MODAL_SHOW.shouldBe(visible);
         return this;
     }
 
     public void checkInvisibility() {
-        $(CSS_MODAL_SHOW).shouldNotBe(visible);
+        MODAL_SHOW.shouldNotBe(visible);
     }
 
     public ModalComponent checkTitle() {
-        $(CSS_MODAL_TITLE).shouldHave(text(TITLE));
+        MODAL_TITLE.shouldHave(text(TITLE));
         return this;
     }
 
     public ModalComponent checkColumnTitles() {
-        $$(CSS_COLUMN_TITLE).shouldHave(texts(LABEL, VALUES));
+       COLUMN_TITLE.shouldHave(texts(LABEL, VALUES));
         return this;
     }
 

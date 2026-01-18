@@ -4,20 +4,22 @@ import models.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
-import testdata.StudentBuilder;
+import utils.RandomData;
 
 class TextBoxTest extends BaseTest {
-    private static final String NEW_EMAIL = "name_surname@test.net";
-
     private TextBoxPage page;
     private Student student;
 
     @BeforeEach
     void setUp() {
         page = new TextBoxPage();
-        student = StudentBuilder.defaultStudent()
-                .withEmail(NEW_EMAIL)
-                .build();
+        var randomizer = new RandomData();
+        var firstName = randomizer.randomFirstName();
+        var lastName = randomizer.randomLastName();
+        var email = randomizer.randomEmail();
+        var address = randomizer.randomAddress();
+
+        student = new Student(firstName, lastName, email, address);
     }
 
     @Test

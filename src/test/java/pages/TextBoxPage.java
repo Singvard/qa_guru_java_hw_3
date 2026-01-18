@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import models.Student;
 import utils.PageUtils;
 
@@ -21,6 +22,15 @@ public class TextBoxPage {
     private static final String CURRENT_ADDRESS_TEMPLATE = "Current Address :%s";
     private static final String PERMANENT_ADDRESS_TEMPLATE = "Permananet Address :%s";
 
+    private static final SelenideElement USER_NAME = $(ID_USER_NAME);
+    private static final SelenideElement USER_EMAIL = $(ID_USER_EMAIL);
+    private static final SelenideElement CURRENT_ADDRESS = $(ID_CURRENT_ADDRESS);
+    private static final SelenideElement PERMANENT_ADDRESS = $(ID_PERMANENT_ADDRESS);
+    private static final SelenideElement SUBMIT = $(ID_SUBMIT);
+    private static final SelenideElement NAME = $(ID_NAME);
+    private static final SelenideElement EMAIL = $(ID_EMAIL);
+    private static final SelenideElement OUTPUT = $(ID_OUTPUT);
+
     public TextBoxPage openPage() {
         open(PAGE_ADDRESS);
         return this;
@@ -32,47 +42,47 @@ public class TextBoxPage {
     }
 
     public TextBoxPage setFullName(String fullName) {
-        $(ID_USER_NAME).setValue(fullName);
+        USER_NAME.setValue(fullName);
         return this;
     }
 
     public TextBoxPage setEmail(String email) {
-        $(ID_USER_EMAIL).setValue(email);
+        USER_EMAIL.setValue(email);
         return this;
     }
 
     public TextBoxPage setCurrentAddress(String currentAddress) {
-        $(ID_CURRENT_ADDRESS).setValue(currentAddress);
+        CURRENT_ADDRESS.setValue(currentAddress);
         return this;
     }
 
     public TextBoxPage setPermanentAddress(String permanentAddress) {
-        $(ID_PERMANENT_ADDRESS).setValue(permanentAddress);
+        PERMANENT_ADDRESS.setValue(permanentAddress);
         return this;
     }
 
     public void submit() {
-        $(ID_SUBMIT).click();
+        SUBMIT.click();
     }
 
     public TextBoxPage verifyFullName(Student student) {
-        PageUtils.checkTextValue(ID_NAME, NAME_TEMPLATE.formatted(student.studentFullName()));
+        PageUtils.checkTextValue(NAME, NAME_TEMPLATE.formatted(student.studentFullName()));
         return this;
     }
 
     public TextBoxPage verifyEmail(Student student) {
-        PageUtils.checkTextValue(ID_EMAIL, EMAIL_TEMPLATE.formatted(student.email()));
+        PageUtils.checkTextValue(EMAIL, EMAIL_TEMPLATE.formatted(student.email()));
         return this;
     }
 
     public TextBoxPage verifyCurrentAddress(Student student) {
-        PageUtils.checkTextValue(ID_OUTPUT, ID_CURRENT_ADDRESS,
+        PageUtils.checkTextValue(OUTPUT, ID_CURRENT_ADDRESS,
                 CURRENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress()));
         return this;
     }
 
     public TextBoxPage verifyPermanentAddress(Student student) {
-        PageUtils.checkTextValue(ID_OUTPUT, ID_PERMANENT_ADDRESS,
+        PageUtils.checkTextValue(OUTPUT, ID_PERMANENT_ADDRESS,
                 PERMANENT_ADDRESS_TEMPLATE.formatted(student.studentFlatAddress()));
         return this;
     }
