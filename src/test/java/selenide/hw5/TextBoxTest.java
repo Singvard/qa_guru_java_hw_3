@@ -1,4 +1,4 @@
-package selenide;
+package selenide.hw5;
 
 import models.Student;
 import org.junit.jupiter.api.BeforeEach;
