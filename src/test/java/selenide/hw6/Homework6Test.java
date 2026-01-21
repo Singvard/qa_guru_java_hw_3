@@ -7,6 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -105,11 +106,11 @@ class Homework6Test extends BaseTest {
         }
     }
 
-    private static Stream<Object[]> provideProductData() {
+    private static Stream<Arguments> provideProductData() {
         return Stream.of(
-                new Object[]{Item.BACKPACK, BACKPACK_PRICE},
-                new Object[]{Item.BIKE_LIGHT, BIKE_LIGHT_PRICE},
-                new Object[]{Item.BOLT_T_SHIRT, BOLT_T_SHIRT_PRICE}
+                Arguments.of(Item.BACKPACK, BACKPACK_PRICE),
+                Arguments.of(Item.BIKE_LIGHT, BIKE_LIGHT_PRICE),
+                Arguments.of(Item.BOLT_T_SHIRT, BOLT_T_SHIRT_PRICE)
         );
     }
 }
