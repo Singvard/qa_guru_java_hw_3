@@ -8,6 +8,7 @@ public class SauceDemoLoginPage {
     private static final String ADDRESS = "/";
     private static final SelenideElement USERNAME = Selenide.$(PageUtils.testId("username"));
     private static final SelenideElement PASSWORD = Selenide.$(PageUtils.testId("password"));
+    private static final SelenideElement ERROR = Selenide.$(PageUtils.testId("error"));
     private static final SelenideElement LOGIN_BUTTON = Selenide.$(PageUtils.testId("login-button"));
 
     public SauceDemoLoginPage open() {
@@ -28,5 +29,14 @@ public class SauceDemoLoginPage {
     public SauceDemoProductsPage login() {
         LOGIN_BUTTON.submit();
         return new SauceDemoProductsPage();
+    }
+
+    public SauceDemoLoginPage loginWithError() {
+        LOGIN_BUTTON.submit();
+        return this;
+    }
+
+    public String getErrorMessage(){
+        return ERROR.getText();
     }
 }
