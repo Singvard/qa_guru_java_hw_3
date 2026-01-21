@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import models.Item;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,6 +21,9 @@ class Homework6Test extends BaseTest {
     private static final String PROBLEM_USER = "problem_user";
     private static final String PERFORMANCE_GLITCH_USER = "performance_glitch_user";
     private static final String VALID_PASSWORD = "secret_sauce";
+    private static final String BACKPACK_PRICE = "$29.99";
+    private static final String BIKE_LIGHT_PRICE = "$9.99";
+    private static final String BOLT_T_SHIRT_PRICE = "$15.99";
     private static final int ONE = 1;
 
     @BeforeEach
@@ -28,7 +32,8 @@ class Homework6Test extends BaseTest {
         clearSession();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Успешный вход с логином {0}.")
+    @DisplayName("Успешная авторизация на сайте с различными валидными логинами.")
     @ValueSource(strings = {
             STANDARD_USER,
             PROBLEM_USER,
@@ -54,7 +59,9 @@ class Homework6Test extends BaseTest {
                 .isTrue();
     }
 
-    @ParameterizedTest
+
+    @ParameterizedTest(name = "Неудачная авторизация с логином {0}, паролем {1} и ожидаемым текстом ошибки {2}.")
+    @DisplayName("Ошибка авторизации с невалидными логинами/паролями.")
     @CsvFileSource(resources = "/hw6.csv", numLinesToSkip = ONE)
     void testInvalidLoginScenariosFromFile(String username, String password, String expectedErrorMessage) {
         var loginPage = new SauceDemoLoginPage().open()
@@ -68,12 +75,13 @@ class Homework6Test extends BaseTest {
     }
 
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Добавление товара {0} в корзину с ожидаемой ценой {1}")
+    @DisplayName("Проверка добавления товара в корзину.")
     @MethodSource("provideProductData")
     void testAddingItemToCart(Item item, String expectedPrice) {
         var productsPage = new SauceDemoProductsPage()
                 .openWithUser(STANDARD_USER, VALID_PASSWORD)
-                .addItemToToCart(item);
+                .addItemToCart(item);
         Assertions.assertThat(productsPage.getCartItemCount())
                 .as("Количество товаров в корзине должно быть равно 1")
                 .isEqualTo(ONE);
@@ -99,9 +107,9 @@ class Homework6Test extends BaseTest {
 
     private static Stream<Object[]> provideProductData() {
         return Stream.of(
-                new Object[]{Item.BACKPACK, "$29.99"},
-                new Object[]{Item.BIKE_LIGHT, "$9.99"},
-                new Object[]{Item.BOLT_T_SHIRT, "$15.99"}
+                new Object[]{Item.BACKPACK, BACKPACK_PRICE},
+                new Object[]{Item.BIKE_LIGHT, BIKE_LIGHT_PRICE},
+                new Object[]{Item.BOLT_T_SHIRT, BOLT_T_SHIRT_PRICE}
         );
     }
 }

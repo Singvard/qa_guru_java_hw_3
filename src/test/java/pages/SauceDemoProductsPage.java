@@ -42,7 +42,7 @@ public class SauceDemoProductsPage {
         return this;
     }
 
-    public SauceDemoProductsPage addItemToToCart(Item item) {
+    public SauceDemoProductsPage addItemToCart(Item item) {
         switch (item) {
             case BACKPACK -> ADD_BACKPACK_TO_CART.click();
             case BIKE_LIGHT -> ADD_BIKE_LIGHT_TO_CART.click();
