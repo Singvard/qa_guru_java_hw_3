@@ -1,13 +1,17 @@
 package utils;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.text;
 
 public class PageUtils {
+    private static final String SAUCE_DEMO_TEST_ID = "data-test";
+
     private PageUtils() {
     }
 
@@ -30,5 +34,9 @@ public class PageUtils {
 
     public static void checkAllElementsCssValue(ElementsCollection elements, String css, String value) {
         elements.forEach(element -> element.shouldHave(cssValue(css, value)));
+    }
+
+    public static By testId(String value) {
+        return Selectors.by(SAUCE_DEMO_TEST_ID, value);
     }
 }
