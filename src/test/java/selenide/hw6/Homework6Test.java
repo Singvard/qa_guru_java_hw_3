@@ -1,17 +1,15 @@
 package selenide.hw6;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import models.Item;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import pages.SauceDemoCartPage;
 import pages.SauceDemoLoginPage;
 import pages.SauceDemoProductsPage;
 
@@ -27,10 +25,9 @@ class Homework6Test extends BaseTest {
     private static final String BOLT_T_SHIRT_PRICE = "$15.99";
     private static final int ONE = 1;
 
-    @BeforeEach
-    void clearCartAndSession() {
-        clearCart();
-        clearSession();
+    @AfterEach
+    void afterEach() {
+        Selenide.closeWebDriver();
     }
 
     @ParameterizedTest(name = "Успешный вход с логином {0}.")
@@ -90,20 +87,6 @@ class Homework6Test extends BaseTest {
         Assertions.assertThat(cartPage.getCartItemPrice(item))
                 .as("Цена товара в корзине должна совпадать с ожидаемой ценой")
                 .isEqualTo(expectedPrice);
-    }
-
-    private void clearCart() {
-        new SauceDemoCartPage()
-                .openWithUser(STANDARD_USER, VALID_PASSWORD)
-                .clearCart();
-    }
-
-    private void clearSession() {
-        if (WebDriverRunner.hasWebDriverStarted()) {
-            WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-            Selenide.executeJavaScript("window.localStorage.clear();");
-            Selenide.executeJavaScript("window.sessionStorage.clear();");
-        }
     }
 
     private static Stream<Arguments> provideProductData() {
