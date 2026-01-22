@@ -15,19 +15,29 @@ repositories {
 }
 
 dependencies {
+    val csvVersion = "5.12.0"
     val datafakerVersion = "2.5.3"
-    val slf4jVersion = "2.0.17"
+    val jacksonVersion = "3.0.3"
     val logbackVersion = "1.5.24"
-    val selenideVersion = "7.13.0"
-    val junitVersion = "6.0.2"
+    val pdfTestVersion = "2.1.0"
+    val poiVersion = "5.5.1"
+    val slf4jVersion = "2.0.17"
+    val xlsTestVersion ="1.7.2"
     val assertjVersion = "3.27.6"
+    val junitVersion = "6.0.2"
+    val selenideVersion = "7.13.0"
 
+    implementation("com.opencsv:opencsv:$csvVersion")
     implementation("net.datafaker:datafaker:$datafakerVersion")
-    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("tools.jackson.core:jackson-databind:$jacksonVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
-    testImplementation("com.codeborne:selenide:$selenideVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    implementation("com.codeborne:pdf-test:$pdfTestVersion")
+    implementation("org.apache.poi:poi:$poiVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("com.codeborne:xls-test:$xlsTestVersion")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation("com.codeborne:selenide:$selenideVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
