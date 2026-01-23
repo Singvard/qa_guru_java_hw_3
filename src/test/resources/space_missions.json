@@ -1,0 +1,74 @@
+{
+  "missions": [
+    {
+      "missionName": "Voskhod-2",
+      "spacecraft": "Voskhod-3KD",
+      "country": "Soviet Union",
+      "launchDateTime": "1965-03-18T07:00:00",
+      "landingDateTime": "1965-03-19T09:02:00",
+      "duration": 1422,
+      "crew": [
+        {
+          "name": "Alexei Leonov",
+          "rank": "Major",
+          "role": "Pilot",
+          "age": 30,
+          "firstFlight": true,
+          "missions": 2,
+          "eva_time": 12,
+          "notes": "First human to perform extravehicular activity (spacewalk)."
+        },
+        {
+          "name": "Pavel Belyayev",
+          "rank": "Colonel",
+          "role": "Commander",
+          "age": 39,
+          "firstFlight": true,
+          "missions": 1,
+          "eva_time": 0,
+          "notes": "First spacecraft commander to land manually."
+        }
+      ],
+      "missionObjective": "First spacewalk (EVA) in history.",
+      "evaPerformed": true,
+      "orbitAltitudeKm": 167,
+      "orbitsCompleted": 17,
+      "status": "Success"
+    },
+    {
+      "missionName": "Gemini 4",
+      "spacecraft": "Gemini SC4",
+      "country": "United States",
+      "launchDateTime": "1965-06-03T15:15:59",
+      "landingDateTime": "1965-06-07T17:12:11",
+      "duration": 5776,
+      "crew": [
+        {
+          "name": "James McDivitt",
+          "rank": "Command Pilot",
+          "role": "Commander",
+          "age": 35,
+          "firstFlight": true,
+          "missions": 2,
+          "eva_time": 0,
+          "notes": "Later commanded Apollo 9"
+        },
+        {
+          "name": "Edward White",
+          "rank": "Pilot",
+          "role": "Pilot",
+          "age": 34,
+          "firstFlight": true,
+          "missions": 1,
+          "eva_time": 23,
+          "notes": "First American to perform EVA (spacewalk)"
+        }
+      ],
+      "missionObjective": "First American spacewalk and testing of new spacecraft systems",
+      "evaPerformed": true,
+      "orbitAltitudeKm": 296,
+      "orbitsCompleted": 62,
+      "status": "Success"
+    }
+  ]
+}
