@@ -22,7 +22,7 @@ class ZipFileTest {
     private static final String EXPECTED_PDF_TEXT = "Dummy PDF file";
     private static final int ZERO = 0;
     private static final int EXPECTED_NUMBER_OF_XLSX_ROWS = 51;
-    private static final int XLSX_NUMBER_OF_ROWS = 8;
+    private static final int XLSX_NUMBER_OF_COLUMNS = 8;
     private static final int XLSX_LAST_ROW_NUMBER = 50;
     private static final String[] EXPECTED_XLSX_HEADER_ROW_DATA = {
             "0", "First Name", "Last Name", "Gender", "Country", "Age", "Date", "Id"};
@@ -58,13 +58,13 @@ class ZipFileTest {
                     .isEqualTo(EXPECTED_NUMBER_OF_XLSX_ROWS);
 
             var firstRow = sheet.getRow(ZERO);
-            var firstRowData = extractRowValues(firstRow, XLSX_NUMBER_OF_ROWS);
+            var firstRowData = extractRowValues(firstRow, XLSX_NUMBER_OF_COLUMNS);
             Assertions.assertThat(firstRowData)
                     .as("Фактическое значение первой строки должно совпадать с ожидаемым!")
                     .isEqualTo(EXPECTED_XLSX_HEADER_ROW_DATA);
 
             var lastRow = sheet.getRow(XLSX_LAST_ROW_NUMBER);
-            var lastRowData = extractRowValues(lastRow, XLSX_NUMBER_OF_ROWS);
+            var lastRowData = extractRowValues(lastRow, XLSX_NUMBER_OF_COLUMNS);
             Assertions.assertThat(lastRowData)
                     .as("Фактическое значение последней строки должно совпадать с ожидаемым!")
                     .isEqualTo(EXPECTED_XLSX_LAST_DATA_ROW);
