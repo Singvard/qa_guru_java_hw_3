@@ -1,5 +1,6 @@
 plugins {
-    java
+    id("java")
+    id("io.qameta.allure") version "3.0.1"
 }
 
 group = "guru.qa"
@@ -7,6 +8,22 @@ group = "guru.qa"
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+allure {
+    val allureVersion = "2.32.0"
+
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
     }
 }
 
@@ -18,7 +35,7 @@ dependencies {
     val csvVersion = "5.12.0"
     val datafakerVersion = "2.5.3"
     val jacksonVersion = "3.0.3"
-    val logbackVersion = "1.5.24"
+    val logbackVersion = "1.5.26"
     val pdfTestVersion = "2.1.0"
     val poiVersion = "5.5.1"
     val slf4jVersion = "2.0.17"
