@@ -22,7 +22,8 @@ dependencies {
     val pdfTestVersion = "2.1.0"
     val poiVersion = "5.5.1"
     val slf4jVersion = "2.0.17"
-    val xlsTestVersion ="1.7.2"
+    val xlsTestVersion = "1.7.2"
+    val allureSelenideVersion = "2.32.0"
     val assertjVersion = "3.27.6"
     val junitVersion = "6.0.2"
     val selenideVersion = "7.13.0"
@@ -35,6 +36,7 @@ dependencies {
     implementation("org.apache.poi:poi:$poiVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("com.codeborne:xls-test:$xlsTestVersion")
+    testImplementation("io.qameta.allure:allure-selenide:$allureSelenideVersion")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("com.codeborne:selenide:$selenideVersion")
