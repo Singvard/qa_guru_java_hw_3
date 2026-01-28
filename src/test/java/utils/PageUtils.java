@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Condition.text;
 
 public class PageUtils {
     private static final String SAUCE_DEMO_TEST_ID = "data-test";
+    private static final String DATA_TESTID = "data-testid";
 
     private PageUtils() {
     }
@@ -38,5 +39,9 @@ public class PageUtils {
 
     public static By testId(String value) {
         return Selectors.by(SAUCE_DEMO_TEST_ID, value);
+    }
+
+    public static By dataTestId(String value) {
+        return Selectors.by(DATA_TESTID, value);
     }
 }
