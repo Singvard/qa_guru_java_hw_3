@@ -2,7 +2,9 @@ package selenide.hw8;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -18,6 +20,7 @@ class AnnotationStepsTest {
 
     @Test
     void testIssueSearch() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         openPage(BASE_URL);
         clickSearch();
         inputSearchText(SEARCH_TEXT);
