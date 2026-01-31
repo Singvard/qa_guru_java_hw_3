@@ -1,5 +1,6 @@
 plugins {
-    java
+    id("java")
+    id("io.qameta.allure") version "3.0.1"
 }
 
 group = "guru.qa"
@@ -7,6 +8,22 @@ group = "guru.qa"
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+allure {
+    val allureVersion = "2.32.0"
+
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
     }
 }
 
@@ -18,11 +35,12 @@ dependencies {
     val csvVersion = "5.12.0"
     val datafakerVersion = "2.5.3"
     val jacksonVersion = "3.0.3"
-    val logbackVersion = "1.5.24"
+    val logbackVersion = "1.5.26"
     val pdfTestVersion = "2.1.0"
     val poiVersion = "5.5.1"
     val slf4jVersion = "2.0.17"
-    val xlsTestVersion ="1.7.2"
+    val xlsTestVersion = "1.7.2"
+    val allureSelenideVersion = "2.32.0"
     val assertjVersion = "3.27.6"
     val junitVersion = "6.0.2"
     val selenideVersion = "7.13.0"
@@ -35,6 +53,7 @@ dependencies {
     implementation("org.apache.poi:poi:$poiVersion")
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("com.codeborne:xls-test:$xlsTestVersion")
+    testImplementation("io.qameta.allure:allure-selenide:$allureSelenideVersion")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("com.codeborne:selenide:$selenideVersion")
